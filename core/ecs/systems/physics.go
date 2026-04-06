@@ -1,7 +1,7 @@
 package systems
 
 import (
-	"github.com/igarciacracco/climbing-go/core/ecs/components/physics"
+	"github.com/igarciacracco/forg-go/core/ecs/components/physics"
 	"github.com/yohamta/donburi"
 	"github.com/yohamta/donburi/ecs"
 	"github.com/yohamta/donburi/filter"

@@ -1,0 +1,14 @@
+player:
+  start_x: 250
+  start_y: 200
+  move_speed: 3.0
+
+animation:
+  idle_frame_duration: 6
+  run_frame_duration: 6
+  jump_frame_duration: 8
+  fall_frame_duration: 8
+  climb_frame_duration: 10
+
+assets:
+  path: "./assets/images/"

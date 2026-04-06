@@ -1,7 +1,7 @@
 package visuals
 
 import (
-	"github.com/igarciacracco/climbing-go/core/ecs/components/visuals"
+	"github.com/igarciacracco/forg-go/core/ecs/components/visuals"
 	"github.com/yohamta/donburi"
 	"github.com/yohamta/donburi/ecs"
 	"github.com/yohamta/donburi/filter"

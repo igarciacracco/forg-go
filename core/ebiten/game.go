@@ -3,25 +3,28 @@ package ebiten
 import (
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
-	"github.com/igarciacracco/climbing-go/core/assets/images"
-	"github.com/igarciacracco/climbing-go/core/level"
+	"github.com/igarciacracco/forg-go/core/assets/images"
+	"github.com/igarciacracco/forg-go/core/level"
+	"github.com/igarciacracco/forg-go/infrastructure/config"
 )
-
-const SCREEN_WIDTH = 640
-const SCREEN_HEIGHT = 480
 
 type Game struct {
 	levelManager *level.Manager
+	screenWidth  int
+	screenHeight int
 }
 
-func NewGame(loader images.Loader) (*Game, error) {
-	// Initialize the level manager, which handles all level-specific setup.
-	levelManager, err := level.NewManager(loader)
+func NewGame(loader images.Loader, settings config.Settings, balance config.Balance) (*Game, error) {
+	levelManager, err := level.NewManager(loader, balance)
 	if err != nil {
 		return nil, err
 	}
 
-	return &Game{levelManager: levelManager}, nil
+	return &Game{
+		levelManager: levelManager,
+		screenWidth:  settings.Display.ScreenWidth,
+		screenHeight: settings.Display.ScreenHeight,
+	}, nil
 }
 
 func (g *Game) Update() error {
@@ -35,5 +38,5 @@ func (g *Game) Draw(screen *ebiten.Image) {
 }
 
 func (g *Game) Layout(outsideWidth, outsideHeight int) (screenWidth, screenHeight int) {
-	return SCREEN_WIDTH, SCREEN_HEIGHT
+	return g.screenWidth, g.screenHeight
 }

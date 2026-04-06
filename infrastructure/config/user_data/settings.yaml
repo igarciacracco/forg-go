@@ -1,0 +1,9 @@
+window:
+  width: 1280
+  height: 720
+  title: "Hello, World!"
+  fullscreen: false
+
+display:
+  screen_width: 640
+  screen_height: 480
