@@ -34,18 +34,24 @@ type HandsData struct {
 	RightHand Hand
 }
 
-func NewHands(sprite *ebiten.Image) HandsData {
+func NewHands(sprite *ebiten.Image, parentSize image.Rectangle) HandsData {
+	offset := image.Point{
+		X: int(float64(parentSize.Dx()) * float64(2) / 3),
+		Y: int(float64(parentSize.Dx()) * float64(2) / 3),
+	}
+	rockingAmplitude := int(float64(parentSize.Dy()) * float64(1) / 10)
+
 	return HandsData{
 		LeftHand: Hand{
 			Sprite:           sprite,
-			BaseOffset:       image.Point{-20, 0},
-			RockingAmplitude: 5,
+			BaseOffset:       image.Point{0, offset.Y},
+			RockingAmplitude: float64(rockingAmplitude),
 			RockingFrequency: 0.15,
 		},
 		RightHand: Hand{
 			Sprite:           sprite,
-			BaseOffset:       image.Point{20, 0},
-			RockingAmplitude: 5,
+			BaseOffset:       image.Point{offset.X, offset.Y},
+			RockingAmplitude: float64(rockingAmplitude),
 			RockingFrequency: 0.15,
 		},
 	}

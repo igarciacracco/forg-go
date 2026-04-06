@@ -11,50 +11,32 @@ import (
 )
 
 // NewPlayer creates a player entity with all its necessary components.
-func NewPlayer(ecs *ecs.ECS, l ecs.LayerID, image *ebiten.Image, handsImage *ebiten.Image, x, y float64) *donburi.Entry {
-	// Create the entity with its components
+// animations is a map of named AnimationData (use the visuals.Anim* constants as keys).
+// The manager starts on visuals.AnimIdle.
+func NewPlayer(ecs *ecs.ECS, l ecs.LayerID, animations map[string]*visuals.AnimationData, handsImage *ebiten.Image, x, y float64) *donburi.Entry {
 	entry := ecs.World.Entry(
 		ecs.Create(
 			l,
-			visuals.Sprite,
+			visuals.AnimManager,
 			physics.Position,
 			physics.Velocity,
+			physics.Scale,
 			input.InputComponent,
 			stats.EntityStatsComponent,
 			visuals.HandsComponent,
 		),
 	)
 
-	// Set the data for the Sprite component
-	donburi.SetValue(entry, visuals.Sprite, visuals.SpriteData{
-		Image: image, // TODO: Get from other source, not hardcoded
-	})
+	donburi.SetValue(entry, visuals.AnimManager, visuals.NewAnimationManager(animations, visuals.AnimIdle, false))
 
-	// Set the data for the Position component
-	donburi.SetValue(entry, physics.Position, physics.PositionData{
-		X: x,
-		Y: y,
-	})
-
-	// Set the data for the Velocity component.
-	// We'll give it a slight downward velocity to show the physics system is working.
-	donburi.SetValue(entry, physics.Velocity, physics.VelocityData{
-		X: 0,
-		Y: 0,
-	})
-
-	// Set the data for the Input component
+	donburi.SetValue(entry, physics.Position, physics.PositionData{X: x, Y: y})
+	donburi.SetValue(entry, physics.Velocity, physics.VelocityData{X: 0, Y: 0})
 	donburi.SetValue(entry, input.InputComponent, input.InputData{})
+	donburi.SetValue(entry, stats.EntityStatsComponent, stats.EntityStatsData{MoveSpeed: 3.0})
 
-	// Set the data for the EntityStats component
-	donburi.SetValue(entry, stats.EntityStatsComponent, stats.EntityStatsData{
-		MoveSpeed: 3.0,
-	})
-
-	// Set the data for hands
-	donburi.SetValue(entry, visuals.HandsComponent, visuals.NewHands(
-		handsImage,
-	))
+	// Derive hand offsets from the idle animation's first frame
+	idleFrames := animations[visuals.AnimIdle].Frames
+	donburi.SetValue(entry, visuals.HandsComponent, visuals.NewHands(handsImage, idleFrames[0].Bounds()))
 
 	return entry
 }

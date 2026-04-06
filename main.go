@@ -17,9 +17,9 @@ func main() {
 		log.Fatal(err)
 	}
 
-	ebiten.SetWindowSize(640, 480)
+	ebiten.SetWindowSize(1280, 720)
 	ebiten.SetWindowTitle("Hello, World!")
-	ebiten.SetFullscreen(true)
+	ebiten.SetFullscreen(false)
 	if err := ebiten.RunGame(game); err != nil {
 		log.Fatal(err)
 	}
