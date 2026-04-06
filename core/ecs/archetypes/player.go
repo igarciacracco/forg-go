@@ -2,10 +2,10 @@ package archetypes
 
 import (
 	"github.com/hajimehoshi/ebiten/v2"
-	"github.com/igarciacracco/climbing-go/core/ecs/components/input"
-	"github.com/igarciacracco/climbing-go/core/ecs/components/physics"
-	"github.com/igarciacracco/climbing-go/core/ecs/components/stats"
-	"github.com/igarciacracco/climbing-go/core/ecs/components/visuals"
+	"github.com/igarciacracco/forg-go/core/ecs/components/input"
+	"github.com/igarciacracco/forg-go/core/ecs/components/physics"
+	"github.com/igarciacracco/forg-go/core/ecs/components/stats"
+	"github.com/igarciacracco/forg-go/core/ecs/components/visuals"
 	"github.com/yohamta/donburi"
 	"github.com/yohamta/donburi/ecs"
 )

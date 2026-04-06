@@ -1,4 +1,4 @@
-module github.com/igarciacracco/climbing-go
+module github.com/igarciacracco/forg-go
 
 go 1.24.9
 

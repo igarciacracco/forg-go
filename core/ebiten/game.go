@@ -3,9 +3,9 @@ package ebiten
 import (
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
-	"github.com/igarciacracco/climbing-go/core/assets/images"
-	"github.com/igarciacracco/climbing-go/core/level"
-	"github.com/igarciacracco/climbing-go/infrastructure/config"
+	"github.com/igarciacracco/forg-go/core/assets/images"
+	"github.com/igarciacracco/forg-go/core/level"
+	"github.com/igarciacracco/forg-go/infrastructure/config"
 )
 
 type Game struct {

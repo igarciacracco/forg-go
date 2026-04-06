@@ -1,13 +1,13 @@
 package level
 
 import (
-	"github.com/igarciacracco/climbing-go/core/assets/images"
-	"github.com/igarciacracco/climbing-go/core/ecs/archetypes"
-	"github.com/igarciacracco/climbing-go/core/ecs/components/visuals"
-	"github.com/igarciacracco/climbing-go/core/ecs/systems"
-	"github.com/igarciacracco/climbing-go/core/ecs/systems/movement"
-	visSystems "github.com/igarciacracco/climbing-go/core/ecs/systems/visuals"
-	"github.com/igarciacracco/climbing-go/infrastructure/config"
+	"github.com/igarciacracco/forg-go/core/assets/images"
+	"github.com/igarciacracco/forg-go/core/ecs/archetypes"
+	"github.com/igarciacracco/forg-go/core/ecs/components/visuals"
+	"github.com/igarciacracco/forg-go/core/ecs/systems"
+	"github.com/igarciacracco/forg-go/core/ecs/systems/movement"
+	visSystems "github.com/igarciacracco/forg-go/core/ecs/systems/visuals"
+	"github.com/igarciacracco/forg-go/infrastructure/config"
 	"github.com/yohamta/donburi/ecs"
 )
 

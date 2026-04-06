@@ -4,9 +4,9 @@ import (
 	"log"
 
 	"github.com/hajimehoshi/ebiten/v2"
-	"github.com/igarciacracco/climbing-go/core/assets/images"
-	ebt "github.com/igarciacracco/climbing-go/core/ebiten"
-	"github.com/igarciacracco/climbing-go/infrastructure/config"
+	"github.com/igarciacracco/forg-go/core/assets/images"
+	ebt "github.com/igarciacracco/forg-go/core/ebiten"
+	"github.com/igarciacracco/forg-go/infrastructure/config"
 )
 
 func main() {
