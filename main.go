@@ -6,22 +6,26 @@ import (
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/igarciacracco/climbing-go/core/assets/images"
 	ebt "github.com/igarciacracco/climbing-go/core/ebiten"
+	"github.com/igarciacracco/climbing-go/infrastructure/config"
 )
 
 func main() {
-
-	loader := images.NewLoader("./assets/images/")
-
-	game, err := ebt.NewGame(loader)
+	settings, balance, err := config.LoadSettings()
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	ebiten.SetWindowSize(1280, 720)
-	ebiten.SetWindowTitle("Hello, World!")
-	ebiten.SetFullscreen(false)
-	if err := ebiten.RunGame(game); err != nil {
+	loader := images.NewLoader(balance.Assets.Path)
+
+	game, err := ebt.NewGame(loader, settings, balance)
+	if err != nil {
 		log.Fatal(err)
 	}
 
+	ebiten.SetWindowSize(settings.Window.Width, settings.Window.Height)
+	ebiten.SetWindowTitle(settings.Window.Title)
+	ebiten.SetFullscreen(settings.Window.Fullscreen)
+	if err := ebiten.RunGame(game); err != nil {
+		log.Fatal(err)
+	}
 }

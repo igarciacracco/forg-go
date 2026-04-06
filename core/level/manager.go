@@ -7,6 +7,7 @@ import (
 	"github.com/igarciacracco/climbing-go/core/ecs/systems"
 	"github.com/igarciacracco/climbing-go/core/ecs/systems/movement"
 	visSystems "github.com/igarciacracco/climbing-go/core/ecs/systems/visuals"
+	"github.com/igarciacracco/climbing-go/infrastructure/config"
 	"github.com/yohamta/donburi/ecs"
 )
 
@@ -16,7 +17,7 @@ type Manager struct {
 }
 
 // NewManager creates a new level manager and loads the initial level.
-func NewManager(loader images.Loader) (*Manager, error) {
+func NewManager(loader images.Loader, balance config.Balance) (*Manager, error) {
 	level := New()
 
 	level.ECS().AddSystem(systems.UpdatePhysics)
@@ -43,15 +44,15 @@ func NewManager(loader images.Loader) (*Manager, error) {
 	}
 
 	animations := map[string]*visuals.AnimationData{
-		visuals.AnimIdle:  anim(6),
-		visuals.AnimRun:   anim(6),
-		visuals.AnimJump:  anim(8),
-		visuals.AnimFall:  anim(8),
-		visuals.AnimClimb: anim(10),
+		visuals.AnimIdle:  anim(balance.Animation.IdleFrameDuration),
+		visuals.AnimRun:   anim(balance.Animation.RunFrameDuration),
+		visuals.AnimJump:  anim(balance.Animation.JumpFrameDuration),
+		visuals.AnimFall:  anim(balance.Animation.FallFrameDuration),
+		visuals.AnimClimb: anim(balance.Animation.ClimbFrameDuration),
 	}
 
-	// TODO: fix this, should not be hardcoded
-	archetypes.NewPlayer(level.ECS(), 0, animations, playerHandsImage, 250, 200)
+	archetypes.NewPlayer(level.ECS(), 0, animations, playerHandsImage,
+		balance.Player.StartX, balance.Player.StartY, balance.Player.MoveSpeed)
 
 	return &Manager{CurrentLevel: level}, nil
 }
